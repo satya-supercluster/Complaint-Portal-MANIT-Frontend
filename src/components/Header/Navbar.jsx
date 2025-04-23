@@ -49,7 +49,7 @@ const Navbar = () => {
     <div>
       <div className="w-full bg-[#003366] text-white max-sm:text-sm">
         {/* Image Section */}
-        <div className="max-w-[1200px] mx-auto px-8 max-sm:px-2 pt-3">
+        <div className="max-w-[1200px] mx-auto px-2 max-sm:px-2 pt-3">
           <a href="https://www.manit.ac.in/" target="_blank">
             <img
               src="/logo/MANIT-Logo.png"
@@ -67,7 +67,7 @@ const Navbar = () => {
       >
         {/* Sticky Navbar Section */}
         <div className="bg-[#003366]">
-          <div className="max-w-[1200px] mx-auto px-8 max-sm:px-2 flex flex-col">
+          <div className="max-w-[1200px] mx-auto px-2 max-sm:px-2 flex flex-col">
             <span className="py-2">
               <p className="font-bold">Complaint Management Portal</p>
             </span>

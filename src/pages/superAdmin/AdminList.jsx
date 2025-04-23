@@ -4,7 +4,12 @@ import Loader from "../../components/Loader";
 import { useAuth } from "../../context/AuthContext";
 import { getAllSuperadminAdmins } from "../../services/api/admindata";
 import { filterSuperadminAdmin } from "../../services/filters/superadminFilters";
-import { addOrEditAdmin, deleteAdmin, toggleAdminActive } from "../../services/api/superadmin";
+import {
+  addOrEditAdmin,
+  deleteAdmin,
+  toggleAdminActive,
+} from "../../services/api/superadmin";
+
 function AdminList() {
   const { logout } = useAuth();
 
@@ -208,8 +213,8 @@ function AdminList() {
   return (
     <div className="max-w-[1200px] mx-auto sm:px-4 p-2 py-8 min-h-[80vh]">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <div className="md:p-4 rounded-t-lg max-sm:w-full">
-          <h2 className="text-lg md:text-xl text-center md:text-left font-bold text-gray-100">
+        <div className=" rounded-t-lg max-sm:w-full">
+          <h2 className="text-lg text-center md:text-left text-white bg-blue-600 p-2 rounded-lg shadow-md">
             Admin Management
           </h2>
         </div>
@@ -236,7 +241,7 @@ function AdminList() {
       </div>
 
       {/* Search and Filter Section */}
-      <div className="mb-6 bg-gray-800 rounded-lg p-4 shadow-md">
+      <div className="mb-6 bg-white rounded-lg p-4 shadow-md border border-gray-200">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-3">
           {/* Search Bar */}
           <div className="relative w-full sm:w-1/3">
@@ -245,11 +250,11 @@ function AdminList() {
               value={searchTerm}
               onChange={handleSearch}
               placeholder="Search by name, email, role..."
-              className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 pl-10"
+              className="w-full px-4 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 pl-10"
             />
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
-                className="w-5 h-5 text-gray-400"
+                className="w-5 h-5 text-gray-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -266,7 +271,7 @@ function AdminList() {
             {searchTerm && (
               <button
                 onClick={clearSearch}
-                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
               >
                 <svg
                   className="w-5 h-5"
@@ -292,7 +297,7 @@ function AdminList() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={toggleFilters}
-              className="flex items-center px-4 py-2 bg-gray-700 text-white rounded-md shadow-sm sm:hidden w-full justify-center"
+              className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-md shadow-sm sm:hidden w-full justify-center border border-gray-300"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -314,7 +319,7 @@ function AdminList() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={resetFilters}
-              className="flex items-center px-4 py-2 bg-gray-700 text-white rounded-md shadow-sm w-full sm:w-auto justify-center"
+              className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-md shadow-sm w-full sm:w-auto justify-center border border-gray-300"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -338,11 +343,11 @@ function AdminList() {
         {/* Desktop Filters */}
         <div className="hidden sm:flex flex-wrap gap-4">
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-300">Status:</label>
+            <label className="text-sm font-medium text-gray-700">Status:</label>
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-1.5 text-sm"
+              className="bg-gray-50 text-gray-800 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-1.5 text-sm"
             >
               <option value="all">All</option>
               <option value="active">Active</option>
@@ -351,13 +356,13 @@ function AdminList() {
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-300">
+            <label className="text-sm font-medium text-gray-700">
               Department:
             </label>
             <select
               value={filterDepartment}
               onChange={(e) => setFilterDepartment(e.target.value)}
-              className="bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-1.5 text-sm"
+              className="bg-gray-50 text-gray-800 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-1.5 text-sm"
             >
               <option value="all">All Departments</option>
               {departments.map((dept, index) => (
@@ -369,7 +374,7 @@ function AdminList() {
           </div>
 
           {/* Results count */}
-          <div className="ml-auto flex items-center text-gray-300 text-sm">
+          <div className="ml-auto flex items-center text-gray-700 text-sm">
             <span>
               {filteredAdmins.length}{" "}
               {filteredAdmins.length === 1 ? "admin" : "admins"} found
@@ -388,13 +393,13 @@ function AdminList() {
               className="sm:hidden mt-4 space-y-4 overflow-hidden"
             >
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-300">
+                <label className="text-sm font-medium text-gray-700">
                   Status:
                 </label>
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-2 text-sm"
+                  className="bg-gray-50 text-gray-800 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-2 text-sm"
                 >
                   <option value="all">All</option>
                   <option value="active">Active</option>
@@ -403,13 +408,13 @@ function AdminList() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-300">
+                <label className="text-sm font-medium text-gray-700">
                   Department:
                 </label>
                 <select
                   value={filterDepartment}
                   onChange={(e) => setFilterDepartment(e.target.value)}
-                  className="bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-2 text-sm"
+                  className="bg-gray-50 text-gray-800 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 px-3 py-2 text-sm"
                 >
                   <option value="all">All Departments</option>
                   {departments.map((dept, index) => (
@@ -421,7 +426,7 @@ function AdminList() {
               </div>
 
               {/* Results count */}
-              <div className="text-gray-300 text-sm py-2">
+              <div className="text-gray-700 text-sm py-2">
                 <span>
                   {filteredAdmins.length}{" "}
                   {filteredAdmins.length === 1 ? "admin" : "admins"} found
@@ -443,11 +448,11 @@ function AdminList() {
       )}
 
       {admins.length === 0 ? (
-        <div className="bg-gray-800 text-gray-200 rounded-lg shadow-md p-6 text-center">
+        <div className="bg-white text-gray-700 rounded-lg shadow-md p-6 text-center border border-gray-200">
           <p>No admins found. Create a new admin to get started.</p>
         </div>
       ) : filteredAdmins.length === 0 ? (
-        <div className="bg-gray-800 text-gray-200 rounded-lg shadow-md p-6 text-center">
+        <div className="bg-white text-gray-700 rounded-lg shadow-md p-6 text-center border border-gray-200">
           <p>No admins match your search or filter criteria.</p>
           <button
             onClick={resetFilters}
@@ -461,70 +466,70 @@ function AdminList() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+          className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200"
         >
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-700">
-              <thead className="bg-gray-900">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Username
                   </th>
-                  <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Role
                   </th>
-                  <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Department
                   </th>
-                  <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Email
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-gray-800 divide-y divide-gray-700">
+              <tbody className="bg-white divide-y divide-gray-200">
                 {filteredAdmins.map((admin) => (
                   <motion.tr
                     key={admin._id}
                     variants={itemVariants}
-                    className="hover:bg-gray-700"
+                    className="hover:bg-gray-50"
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex flex-col">
-                        <div className="text-sm font-medium text-gray-200">
+                        <div className="text-sm font-medium text-gray-800">
                           {admin.fullName}
                         </div>
-                        <div className="sm:hidden text-xs text-gray-400">
+                        <div className="sm:hidden text-xs text-gray-500">
                           {admin.username} • {admin.role}
                         </div>
-                        <div className="lg:hidden text-xs text-gray-400">
+                        <div className="lg:hidden text-xs text-gray-500">
                           {admin.email}
                         </div>
                       </div>
                     </td>
                     <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-300">
+                      <div className="text-sm text-gray-700">
                         {admin.username}
                       </div>
                     </td>
                     <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-300">{admin.role}</div>
+                      <div className="text-sm text-gray-700">{admin.role}</div>
                     </td>
                     <td className="hidden lg:table-cell px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-300">
+                      <div className="text-sm text-gray-700">
                         {admin.department}
                       </div>
                     </td>
                     <td className="hidden lg:table-cell px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-300">{admin.email}</div>
+                      <div className="text-sm text-gray-700">{admin.email}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
@@ -541,7 +546,7 @@ function AdminList() {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleEdit(admin)}
-                          className="text-indigo-400 hover:text-indigo-200"
+                          className="text-indigo-600 hover:text-indigo-800"
                           title="Edit"
                         >
                           <svg
@@ -557,8 +562,8 @@ function AdminList() {
                           onClick={() => handleToggleActive(admin)}
                           className={`${
                             admin.isActive
-                              ? "text-red-400 hover:text-red-300"
-                              : "text-green-400 hover:text-green-300"
+                              ? "text-red-600 hover:text-red-800"
+                              : "text-green-600 hover:text-green-800"
                           }`}
                           title={admin.isActive ? "Deactivate" : "Activate"}
                         >
@@ -585,7 +590,7 @@ function AdminList() {
                         </button>
                         <button
                           onClick={() => handleDelete(admin._id)}
-                          className="text-red-400 hover:text-red-300"
+                          className="text-red-600 hover:text-red-800"
                           title="Delete"
                         >
                           <svg
@@ -624,15 +629,15 @@ function AdminList() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
-              className="bg-gray-800 text-gray-200 rounded-lg shadow-xl w-full max-w-md"
+              className="bg-white text-gray-800 rounded-lg shadow-xl w-full max-w-md"
             >
-              <div className="flex justify-between items-center border-b border-gray-700 px-6 py-4">
+              <div className="flex justify-between items-center border-b border-gray-200 px-6 py-4">
                 <h3 className="text-xl font-semibold">
                   {isEditing ? "Edit Admin" : "Add New Admin"}
                 </h3>
                 <button
                   onClick={handleCloseForm}
-                  className="text-gray-400 hover:text-gray-200"
+                  className="text-gray-500 hover:text-gray-700"
                 >
                   <svg
                     className="h-6 w-6"
@@ -653,7 +658,7 @@ function AdminList() {
               <form onSubmit={handleSubmit} className="p-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="col-span-2">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Full Name *
                     </label>
                     <input
@@ -662,12 +667,12 @@ function AdminList() {
                       value={formData.fullName}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 text-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
                   <div className="col-span-2 sm:col-span-1">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Username *
                     </label>
                     <input
@@ -677,7 +682,7 @@ function AdminList() {
                       onChange={handleChange}
                       required
                       disabled={isEditing}
-                      className={`w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 ${
+                      className={`w-full px-3 py-2 bg-white border border-gray-300 text-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 ${
                         isEditing ? "opacity-70 cursor-not-allowed" : ""
                       }`}
                     />
@@ -685,7 +690,7 @@ function AdminList() {
 
                   {!isEditing && (
                     <div className="col-span-2 sm:col-span-1">
-                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
                         Password *
                       </label>
                       <input
@@ -694,13 +699,13 @@ function AdminList() {
                         value={formData.password}
                         onChange={handleChange}
                         required={!isEditing}
-                        className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 bg-white border border-gray-300 text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
                   )}
 
                   <div className="col-span-2 sm:col-span-1">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Role *
                     </label>
                     <input
@@ -709,12 +714,12 @@ function AdminList() {
                       value={formData.role}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
                   <div className="col-span-2 sm:col-span-1">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Department *
                     </label>
                     <input
@@ -723,7 +728,7 @@ function AdminList() {
                       value={formData.department}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       list="department-options"
                     />
                     {departments.length > 0 && (
@@ -736,7 +741,7 @@ function AdminList() {
                   </div>
 
                   <div className="col-span-2">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Email *
                     </label>
                     <input
@@ -745,12 +750,12 @@ function AdminList() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
                   <div className="col-span-2">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Contact Number
                     </label>
                     <input
@@ -758,7 +763,7 @@ function AdminList() {
                       name="contactNumber"
                       value={formData.contactNumber}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                 </div>
@@ -769,7 +774,7 @@ function AdminList() {
                     whileTap={{ scale: 0.98 }}
                     type="button"
                     onClick={handleCloseForm}
-                    className="px-4 py-2 border border-gray-600 rounded-md text-gray-300 bg-gray-700 shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-blue-500"
+                    className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-500"
                   >
                     Cancel
                   </motion.button>
@@ -777,7 +782,7 @@ function AdminList() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-blue-500"
+                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-500"
                   >
                     {isEditing ? "Update Admin" : "Create Admin"}
                   </motion.button>
