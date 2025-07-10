@@ -5,3 +5,6 @@ The Complaint Portal provides students with an efficient platform to submit and 
 
 ## Complaint Resolution Process
 <img src="./public/image.png"/>
+<img src="./1.png"/>
+<img src="./2.png"/>
+
